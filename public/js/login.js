@@ -24,21 +24,50 @@ export const login = async (email, password) => {
   }
 };
 
+// export const logout = async () => {
+//   try {
+//     const res = await axios({
+//       method: 'GET',
+//       url: '/api/v1/users/logout'
+//     });
+//     if (res.data.status === 'success') {
+//       showAlert('success', 'Logged out successfully!');
+//       window.setTimeout(() => {
+//         location.reload(true);
+//       }, 1500);
+//     }
+    
+//   } catch (err) {
+//     console.log(err.response);
+//     showAlert('error', 'Error logging out! Try again.');
+//   }
+// };
+
 export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: '/api/v1/users/logout'
+      url: '/api/v1/users/logout',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
     });
+    
     if (res.data.status === 'success') {
+      document.cookie = 'jwt=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
+      
+
       showAlert('success', 'Logged out successfully!');
       window.setTimeout(() => {
         location.reload(true);
       }, 1500);
+
     }
-    
-  } catch (err) {
-    console.log(err.response);
+  } 
+  catch (err) {
+    console.error('Logout error:', err.response);
     showAlert('error', 'Error logging out! Try again.');
   }
 };
