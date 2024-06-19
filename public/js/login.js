@@ -24,25 +24,36 @@ export const login = async (email, password) => {
   }
 };
 
+// export const logout = async () => {
+//   try {
+//     const res = await axios({
+//       method: 'GET',
+//       url: '/api/v1/users/logout',
+//     });
+//     if ((res.data.status === 'success')) location.reload(true);
+    
+//   } catch (err) {
+//     console.log(err.response);
+//     showAlert('error', 'Error logging out! Try again.');
+//   }
+// };
+
+
 export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
       url: '/api/v1/users/logout',
+      withCredentials: true, // Ensure cookies are included
     });
-    // if ((res.data.status === 'success')) location.reload(true);
-    if ((res.data.status === 'success')) {
-      window.setTimeout(() => {
-        location.assign('/');
-      }, 1500);
+    console.log('Logout response:', res.data);
+    if (res.data.status === 'success') {
+      location.reload(true);
     }
-    
   } catch (err) {
-    console.log(err.response);
+    console.log('Error response:', err.response);
     showAlert('error', 'Error logging out! Try again.');
   }
 };
-
-
 
 

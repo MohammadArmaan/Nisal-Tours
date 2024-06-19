@@ -20,7 +20,7 @@ const createSendToken = (user, statusCode, res) => {
     ),
     httpOnly: true
   };
-  // if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
   res.cookie('jwt', token, cookieOptions);
 
@@ -69,13 +69,24 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
+// exports.logout = (req, res) => {
+//   res.cookie('jwt', 'loggedout', {
+//     expires: new Date(Date.now() + 10 * 1000),
+//     httpOnly: true
+//   });
+//   res.status(200).json({ status: 'success' });
+// };
+
 exports.logout = (req, res) => {
+  console.log('Logging out user...');
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production'
   });
   res.status(200).json({ status: 'success' });
 };
+
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
