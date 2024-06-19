@@ -33,7 +33,7 @@ export const logout = async () => {
     if (res.data.status === 'success') {
       showAlert('success', 'Logged out successfully !');
       window.setTimeout(() => {
-        location.assign('/');
+        location.reload();
     }, 1500);
     }
   } catch (err) {
