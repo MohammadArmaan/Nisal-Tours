@@ -40,7 +40,7 @@ export const logout = async () => {
           location.reload(true);
         }, 1500);
       }
-
+      console.log("Logged Out")
     }
     
   } catch (err) {
