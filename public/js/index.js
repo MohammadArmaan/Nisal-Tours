@@ -101,10 +101,7 @@ if (loginForm) {
 }
 
 if (logOutBtn) {
-  logOutBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    await logout();
-  });
+  logOutBtn.addEventListener('click', logout);
 }
 
 if (signupForm) {
