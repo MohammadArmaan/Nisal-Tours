@@ -135,7 +135,7 @@ Contributions to the Nisal Tours project are welcome. If you have any ideas, sug
 
 ## Live Demo
 
-Check out the live demo of the Nisal Tours: [Nisal Tours](https://nisaltours.netlify.app/)
+Check out the live demo of the Nisal Tours: [Nisal Tours](https://nisal-tours.vercel.app/)
 
 ## Developer
 
