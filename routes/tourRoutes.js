@@ -1,3 +1,4 @@
+/* eslint-disable*/
 const express = require('express');
 const tourController = require('./../controllers/tourController');
 const authController = require('./../controllers/authController');
